@@ -145,6 +145,7 @@ class Recipe(object):
         # more options, alphabetical
         options.setdefault('additional_filestorages', '')
         options.setdefault('alternative_restore_sources', '')
+        options.setdefault('blob_timestamps', 'false')
         options.setdefault('datafs', datafs)
         options.setdefault('debug', 'false')
         options.setdefault('enable_fullbackup', 'true')
@@ -371,6 +372,7 @@ class Recipe(object):
             loglevel = 'DEBUG'
         else:
             loglevel = 'INFO'
+
         initialization_template = """
 import logging
 loglevel = logging.%(loglevel)s
@@ -410,6 +412,7 @@ logging.basicConfig(level=loglevel,
         pre_command=%(pre_command)r,
         post_command=%(post_command)r,
         no_prompt=options.no_prompt,
+        blob_timestamps=%(blob_timestamps)s,
         """
         # Work with a copy of the options, for safety.
         opts = self.options.copy()
@@ -521,7 +524,8 @@ logging.basicConfig(level=loglevel,
             ['full', 'debug', 'gzip', 'only_blobs',
              'backup_blobs', 'use_rsync', 'gzip_blob',
              'quick', 'enable_snapshotrestore',
-             'enable_zipbackup', 'enable_fullbackup'])
+             'enable_zipbackup', 'enable_fullbackup',
+             'blob_timestamps'])
 
         # These must be distinct locations.
         locations = {}
