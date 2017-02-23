@@ -1,6 +1,11 @@
 3.0.1 (unreleased)
 ==================
 
+- When restoring, first run checks for all filestorages and blobstorages.
+  When one of the backups is missing, we quit with an error.
+  This avoids restoring a filestorage and then getting into trouble
+  due to a missing blobstorage backup.  [maurits]
+
 - Only claim compatibility with Python 2.6 and 2.7.  [maurits]
 
 - Updated test buildout to use most recent versions.  [maurits]
