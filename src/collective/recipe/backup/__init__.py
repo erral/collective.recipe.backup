@@ -372,7 +372,6 @@ class Recipe(object):
             loglevel = 'DEBUG'
         else:
             loglevel = 'INFO'
-
         initialization_template = """
 import logging
 loglevel = logging.%(loglevel)s
