@@ -30,6 +30,14 @@
   This avoids restoring a filestorage and then getting into trouble
   due to a missing blobstorage backup.  [maurits]
 
+- Added ``blob_timestamps`` option.  Default is false.
+  By default we create ``blobstorage.0``.
+  The next time, we rotate this to ``blobstorage.1`` and create a new ``blobstorage.0``.
+  With ``blob_timestamps = true``, we create stable directories that we do not rotate.
+  They get a timestamp, the same timestamp that the ZODB filestorage backup gets.
+  For example: ``blobstorage.1972-12-25-01-02-03``.
+  [maurits]
+
 - Only claim compatibility with Python 2.6 and 2.7.  [maurits]
 
 - Updated test buildout to use most recent versions.  [maurits]
